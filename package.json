@@ -1,0 +1,28 @@
+{
+  "name": "cdtn1-vohoangphilan-l8",
+  "version": "1.0.0",
+  "description": "Smart CRM Project - Chuyên đề Tốt nghiệp 1.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://Ian1817: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@github.com/Ian1817/cdtn1-vohoangphilan-l8.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Ian1817/cdtn1-vohoangphilan-l8/issues"
+  },
+  "homepage": "https://github.com/Ian1817/cdtn1-vohoangphilan-l8#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
