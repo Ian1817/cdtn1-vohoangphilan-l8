@@ -1,11 +1,13 @@
-﻿<mxfile host="app.diagrams.net" modified="2026-10-08T12:00:00.000Z" agent="Mozilla/5.0" version="24.0.0">
+<mxfile host="app.diagrams.net" modified="2026-10-08T12:00:00.000Z" agent="Mozilla/5.0" version="24.0.0">
   <diagram id="arch-l8" name="Architecture Luong L8">
     <mxGraphModel dx="1100" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        
+        <!-- 1. CLIENT LAYER -->
         <mxCell id="client_layer" value="Client Layer (Browser / Mobile Web - Frontend)" style="shape=swimlane;whiteSpace=wrap;html=1;startSize=25;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="40" y="40" width="1000" height="90" as="geometry" />
+          <mxGeometry x="40" y="30" width="1000" height="90" as="geometry" />
         </mxCell>
         <mxCell id="m1" value="M1: Form Khảo sát CSAT" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;" vertex="1" parent="client_layer">
           <mxGeometry x="40" y="35" width="220" height="40" as="geometry" />
@@ -13,28 +15,34 @@
         <mxCell id="m2" value="M2: Báo cáo CSAT theo KTV" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;" vertex="1" parent="client_layer">
           <mxGeometry x="380" y="35" width="240" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="m3" value="M3: Danh sách phản hồi &amp;amp; Lọc" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;" vertex="1" parent="client_layer">
+        <mxCell id="m3" value="M3: Danh sách phản hồi &amp; Lọc" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;" vertex="1" parent="client_layer">
           <mxGeometry x="720" y="35" width="240" height="40" as="geometry" />
         </mxCell>
+
+        <!-- 2. BACKEND LAYER (Hạ xuống y=190 để chừa khoảng trống 70px) -->
         <mxCell id="backend_boundary" value="Backend Layer (Node.js / Express - Layered Architecture)" style="shape=swimlane;whiteSpace=wrap;html=1;startSize=25;fillColor=#f8f9fa;strokeColor=#495057;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="40" y="160" width="1000" height="380" as="geometry" />
+          <mxGeometry x="40" y="190" width="1000" height="380" as="geometry" />
         </mxCell>
-        <mxCell id="controller_layer" value="Routing &amp;amp; Controller Layer (Xác thực HTTP, nhận Request, gọi Service)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;" vertex="1" parent="backend_boundary">
-          <mxGeometry x="40" y="40" width="920" height="50" as="geometry" />
+        <mxCell id="controller_layer" value="Routing &amp; Controller Layer (Xác thực HTTP, nhận Request, gọi Service)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;" vertex="1" parent="backend_boundary">
+          <mxGeometry x="40" y="40" width="920" height="45" as="geometry" />
         </mxCell>
         <mxCell id="service_layer" value="Service Layer (Business Logic: Kiểm tra điều kiện QT-10, chống gửi trùng lặp, tính điểm CSAT)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;" vertex="1" parent="backend_boundary">
-          <mxGeometry x="40" y="140" width="920" height="50" as="geometry" />
+          <mxGeometry x="40" y="130" width="920" height="45" as="geometry" />
         </mxCell>
         <mxCell id="repo_layer" value="Repository / Data Access Layer (Thực thi truy vấn SQL DDL/DML, phân trang, gom nhóm)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontStyle=1;" vertex="1" parent="backend_boundary">
-          <mxGeometry x="40" y="240" width="920" height="50" as="geometry" />
+          <mxGeometry x="40" y="220" width="920" height="45" as="geometry" />
         </mxCell>
         <mxCell id="out_of_scope" value="NGOÀI PHẠM VI (Out of Scope): Cổng SMS/Zalo OTP, Message Broker (RabbitMQ/Kafka), Payment Gateway" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#666666;strokeColor=#999999;dashed=1;" vertex="1" parent="backend_boundary">
-          <mxGeometry x="40" y="320" width="920" height="40" as="geometry" />
+          <mxGeometry x="40" y="305" width="920" height="40" as="geometry" />
         </mxCell>
+
+        <!-- 3. STORAGE LAYER (Hạ xuống y=630) -->
         <mxCell id="db_layer" value="Storage Layer (PostgreSQL Database - 4 bảng chuẩn 3NF: customers, technicians, warranty_tickets, survey_responses)" style="shape=swimlane;whiteSpace=wrap;html=1;startSize=25;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="40" y="570" width="1000" height="80" as="geometry" />
+          <mxGeometry x="40" y="630" width="1000" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="flow1" value="HTTP JSON Request / Response (RESTful API)" style="endArrow=classic;startArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="client_layer" target="controller_layer" parent="1">
+
+        <!-- CONNECTORS & LABELS -->
+        <mxCell id="flow1" value="HTTP JSON Request / Response (RESTful API)" style="endArrow=classic;startArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="client_layer" target="backend_boundary" parent="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
         <mxCell id="flow2" value="Gọi hàm nghiệp vụ DTO" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="controller_layer" target="service_layer" parent="backend_boundary">
@@ -43,7 +51,7 @@
         <mxCell id="flow3" value="Gọi phương thức truy xuất dữ liệu" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="service_layer" target="repo_layer" parent="backend_boundary">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="flow4" value="SQL Query (Parameterized Queries)" style="endArrow=classic;startArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="repo_layer" target="db_layer" parent="1">
+        <mxCell id="flow4" value="SQL Query (Parameterized Queries)" style="endArrow=classic;startArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="backend_boundary" target="db_layer" parent="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
       </root>
