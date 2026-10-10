@@ -1,0 +1,140 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 650" width="1200" height="650" style="background-color: #f8f9fa; font-family: Arial, sans-serif;">
+  <!-- Title -->
+  <text x="600" y="35" text-anchor="middle" font-size="22" font-weight="bold" fill="#1a252f">SMART CRM MEKONG MOBILE - WIREFRAME 3 MÀN HÌNH CHÍNH (LUỒNG L8: KHẢO SÁT CSAT)</text>
+  
+  <!-- SCREEN 1: FORM KHẢO SÁT CSAT -->
+  <g transform="translate(30, 60)">
+    <rect width="360" height="560" rx="15" fill="#ffffff" stroke="#bdc3c7" stroke-width="3"/>
+    <rect width="360" height="50" rx="15" fill="#2c3e50"/>
+    <rect y="35" width="360" height="15" fill="#2c3e50"/>
+    <text x="180" y="32" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">M1: FORM KHẢO SÁT CSAT</text>
+    
+    <!-- Content M1 -->
+    <text x="20" y="85" font-size="13" font-weight="bold" fill="#34495e">Mã phiếu: WT-2026-1052</text>
+    <text x="20" y="110" font-size="12" fill="#7f8c8d">Thiết bị: iPhone 13 Pro Max</text>
+    <text x="20" y="130" font-size="12" fill="#7f8c8d">Kỹ thuật viên: Nguyễn Văn A</text>
+    <line x1="20" y1="145" x2="340" y2="145" stroke="#ecf0f1" stroke-width="2"/>
+    
+    <text x="180" y="175" text-anchor="middle" font-size="14" font-weight="bold" fill="#2980b9">ĐÁNH GIÁ MỨC ĐỘ HÀI LÒNG</text>
+    <text x="180" y="215" text-anchor="middle" font-size="32" fill="#f1c40f">★ ★ ★ ★ ★</text>
+    <text x="180" y="240" text-anchor="middle" font-size="12" fill="#27ae60">5/5 - Rất hài lòng</text>
+    
+    <text x="20" y="275" font-size="12" font-weight="bold" fill="#34495e">Ý kiến nhận xét:</text>
+    <rect x="20" y="285" width="320" height="180" rx="5" fill="#fafafa" stroke="#bdc3c7" stroke-width="1"/>
+    <text x="30" y="310" font-size="12" fill="#7f8c8d">Kỹ thuật viên nhiệt tình, sửa chữa</text>
+    <text x="30" y="330" font-size="12" fill="#7f8c8d">nhanh chóng, máy dùng rất mượt...</text>
+    
+    <rect x="20" y="490" width="320" height="45" rx="8" fill="#27ae60"/>
+    <text x="180" y="518" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">GỬI ĐÁNH GIÁ</text>
+  </g>
+
+  <!-- SCREEN 2: BÁO CÁO CSAT THEO KTV -->
+  <g transform="translate(420, 60)">
+    <rect width="360" height="560" rx="15" fill="#ffffff" stroke="#bdc3c7" stroke-width="3"/>
+    <rect width="360" height="50" rx="15" fill="#2c3e50"/>
+    <rect y="35" width="360" height="15" fill="#2c3e50"/>
+    <text x="180" y="32" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">M2: BÁO CÁO CSAT THEO KTV</text>
+    
+    <!-- Content M2 -->
+    <text x="20" y="80" font-size="12" font-weight="bold" fill="#34495e">Kỳ báo cáo: Tháng 10/2026</text>
+    <text x="20" y="100" font-size="12" fill="#7f8c8d">Tổng phiếu đã đóng: 1,250 | Lượt khảo sát: 890</text>
+    
+    <!-- Table Header -->
+    <rect x="15" y="115" width="330" height="30" fill="#34495e"/>
+    <text x="25" y="135" fill="#ffffff" font-size="11" font-weight="bold">Mã KTV</text>
+    <text x="85" y="135" fill="#ffffff" font-size="11" font-weight="bold">Họ tên</text>
+    <text x="200" y="135" fill="#ffffff" font-size="11" font-weight="bold">Đóng</text>
+    <text x="250" y="135" fill="#ffffff" font-size="11" font-weight="bold">CSAT</text>
+    <text x="300" y="135" fill="#ffffff" font-size="11" font-weight="bold">% 5★</text>
+    
+    <!-- Row 1 -->
+    <rect x="15" y="145" width="330" height="30" fill="#f8f9fa" stroke="#ecf0f1"/>
+    <text x="25" y="165" font-size="11" fill="#2c3e50">KTV01</text>
+    <text x="85" y="165" font-size="11" fill="#2c3e50">Nguyễn Văn A</text>
+    <text x="205" y="165" font-size="11" fill="#2c3e50">120</text>
+    <text x="255" y="165" font-size="11" font-weight="bold" fill="#27ae60">4.8</text>
+    <text x="305" y="165" font-size="11" fill="#2c3e50">88%</text>
+
+    <!-- Row 2 -->
+    <rect x="15" y="175" width="330" height="30" fill="#ffffff" stroke="#ecf0f1"/>
+    <text x="25" y="195" font-size="11" fill="#2c3e50">KTV02</text>
+    <text x="85" y="195" font-size="11" fill="#2c3e50">Trần Thị B</text>
+    <text x="205" y="195" font-size="11" fill="#2c3e50">110</text>
+    <text x="255" y="195" font-size="11" font-weight="bold" fill="#27ae60">4.6</text>
+    <text x="305" y="195" font-size="11" fill="#2c3e50">82%</text>
+
+    <!-- Row 3 -->
+    <rect x="15" y="205" width="330" height="30" fill="#f8f9fa" stroke="#ecf0f1"/>
+    <text x="25" y="225" font-size="11" fill="#2c3e50">KTV03</text>
+    <text x="85" y="225" font-size="11" fill="#2c3e50">Lê Hoàng C</text>
+    <text x="205" y="225" font-size="11" fill="#2c3e50">95</text>
+    <text x="255" y="225" font-size="11" font-weight="bold" fill="#e74c3c">3.2</text>
+    <text x="305" y="225" font-size="11" fill="#2c3e50">45%</text>
+
+    <!-- Chart Placeholder -->
+    <rect x="15" y="250" width="330" height="280" rx="5" fill="#fafafa" stroke="#bdc3c7"/>
+    <text x="180" y="280" text-anchor="middle" font-size="12" font-weight="bold" fill="#2980b9">BIỂU ĐỒ SO SÁNH ĐIỂM CSAT TRUNG BÌNH</text>
+    <rect x="50" y="330" width="40" height="150" fill="#27ae60"/>
+    <text x="70" y="320" text-anchor="middle" font-size="10">4.8</text>
+    <text x="70" y="495" text-anchor="middle" font-size="10">KTV01</text>
+    
+    <rect x="160" y="350" width="40" height="130" fill="#2980b9"/>
+    <text x="180" y="340" text-anchor="middle" font-size="10">4.6</text>
+    <text x="180" y="495" text-anchor="middle" font-size="10">KTV02</text>
+    
+    <rect x="270" y="410" width="40" height="70" fill="#e74c3c"/>
+    <text x="290" y="400" text-anchor="middle" font-size="10">3.2</text>
+    <text x="290" y="495" text-anchor="middle" font-size="10">KTV03</text>
+  </g>
+
+  <!-- SCREEN 3: DANH SÁCH & LỌC PHẢN HỒI -->
+  <g transform="translate(810, 60)">
+    <rect width="360" height="560" rx="15" fill="#ffffff" stroke="#bdc3c7" stroke-width="3"/>
+    <rect width="360" height="50" rx="15" fill="#2c3e50"/>
+    <rect y="35" width="360" height="15" fill="#2c3e50"/>
+    <text x="180" y="32" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">M3: DANH SÁCH &amp; LỌC PHẢN HỒI</text>
+    
+    <!-- Filter Buttons -->
+    <text x="15" y="80" font-size="11" font-weight="bold" fill="#34495e">Lọc theo số sao:</text>
+    <rect x="15" y="90" width="55" height="25" rx="4" fill="#e74c3c"/>
+    <text x="42" y="107" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="bold">1 Sao</text>
+    
+    <rect x="75" y="90" width="55" height="25" rx="4" fill="#e67e22"/>
+    <text x="102" y="107" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="bold">2 Sao</text>
+
+    <rect x="135" y="90" width="55" height="25" rx="4" fill="#bdc3c7"/>
+    <text x="162" y="107" text-anchor="middle" fill="#2c3e50" font-size="10">3 Sao</text>
+
+    <rect x="195" y="90" width="55" height="25" rx="4" fill="#bdc3c7"/>
+    <text x="222" y="107" text-anchor="middle" fill="#2c3e50" font-size="10">4 Sao</text>
+
+    <rect x="255" y="90" width="55" height="25" rx="4" fill="#bdc3c7"/>
+    <text x="282" y="107" text-anchor="middle" fill="#2c3e50" font-size="10">5 Sao</text>
+
+    <!-- Feedback Item 1 -->
+    <rect x="15" y="130" width="330" height="110" rx="6" fill="#fff5f5" stroke="#fab1a0"/>
+    <text x="25" y="150" font-size="11" font-weight="bold" fill="#d63031">WT-1033 | SĐT: 091xxxx789</text>
+    <text x="280" y="150" font-size="12" fill="#d63031">★☆☆☆☆ (1/5)</text>
+    <text x="25" y="170" font-size="11" fill="#2d3436">Nhận xét: Cho nhận máy hơi lâu, nhân viên</text>
+    <text x="25" y="188" font-size="11" fill="#2d3436">chưa nhiệt tinh tư vấn cho khách.</text>
+    <text x="25" y="225" font-size="10" fill="#b2bec3">Thời gian: 08/10/2026 14:15</text>
+
+    <!-- Feedback Item 2 -->
+    <rect x="15" y="250" width="330" height="110" rx="6" fill="#fff5f5" stroke="#fab1a0"/>
+    <text x="25" y="270" font-size="11" font-weight="bold" fill="#d63031">WT-1040 | SĐT: 098xxxx456</text>
+    <text x="280" y="270" font-size="12" fill="#d63031">★★☆☆☆ (2/5)</text>
+    <text x="25" y="290" font-size="11" fill="#2d3436">Nhận xét: Vệ sinh máy chưa sạch bụi ở loa,</text>
+    <text x="25" y="308" font-size="11" fill="#2d3436">cần cải thiện kỹ năng kỹ thuật viên.</text>
+    <text x="25" y="345" font-size="10" fill="#b2bec3">Thời gian: 08/10/2026 16:30</text>
+
+    <!-- Pagination -->
+    <rect x="120" y="500" width="30" height="30" rx="4" fill="#2980b9"/>
+    <text x="135" y="520" text-anchor="middle" fill="#ffffff" font-size="11">1</text>
+    
+    <rect x="160" y="500" width="30" height="30" rx="4" fill="#ecf0f1"/>
+    <text x="175" y="520" text-anchor="middle" fill="#2c3e50" font-size="11">2</text>
+
+    <rect x="200" y="500" width="30" height="30" rx="4" fill="#ecf0f1"/>
+    <text x="215" y="520" text-anchor="middle" fill="#2c3e50" font-size="11">3</text>
+  </g>
+</svg>
