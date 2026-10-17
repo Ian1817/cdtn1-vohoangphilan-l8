@@ -1,11 +1,11 @@
 ﻿# Nhật ký thay đổi thiết kế
 
-## Sau phản hồi Bài tập 1 (Buổi 8, ngày 17/10/2026)
+## Sau phản hồi Bài tập 1 (buổi 8, ngày 17/10/2026)
 
 ### TD-01 Đồng bộ danh sách Use Case giữa SRS và sơ đồ Use Case
 - Phản hồi của GV : Danh sách UC ở SRS có 6 UC nhưng sơ đồ có 7 UC và đánh số lệch (UC6, UC7).
 - Quyết định     : SỬA
-- Lý do          : Cắt bỏ UC7 thừa trên sơ đồ, gộp tính năng xem báo cáo tổng hợp vào UC04 để đảm bảo tính nhất quán giữa tài liệu SRS và thiết kế.
+- Lý do          : Cắt bỏ UC7 thừa trên sơ đồ, gộp tính năng xem báo cáo tổng hợp vào UC04 để đảm bảo tính nhất quán giữa tài liệu SRS và sơ đồ thiết kế.
 - Ảnh hưởng      : Cập nhật file docs/srs.md và vẽ lại sơ đồ usecase.drawio.
 
 ### TD-02 Chuẩn hóa thuật ngữ trong đặc tả UC02 khớp với ERD
@@ -17,7 +17,7 @@
 ### TD-03 Bổ sung Quy tắc nghiệp vụ và Ràng buộc
 - Phản hồi của GV : SRS thiếu mục Ràng buộc và quy tắc nghiệp vụ (cần ≥ 3 quy tắc).
 - Quyết định     : SỬA
-- Lý do          : Bổ sung các quy tắc định lượng cụ thể để làm căn cứ viết code validation cho API.
+- Lý do          : Bổ sung các quy tắc định lượng cụ thể làm căn cứ viết logic kiểm tra (validation) cho API.
 - Ảnh hưởng      : Thêm quy tắc QT-10 (chỉ khảo sát phiếu đã đóng & chống trùng), QT-11 (tính bất biến không cho sửa/xóa), QT-12 (thang điểm 1-5 sao) vào Bảng thuật ngữ & Quy tắc nghiệp vụ tại docs/srs.md.
 
 ### TD-04 Bổ sung cột MoSCoW vào Bảng truy vết yêu cầu
@@ -29,5 +29,5 @@
 ### TD-05 Bổ sung khung chú thích Ký hiệu (Legend) cho các sơ đồ .drawio
 - Phản hồi của GV : Các sơ đồ chưa có khung Legend giải thích ký hiệu.
 - Quyết định     : SỬA
-- Lý do          : Giúp người đọc dễ dàng hiểu các ký hiệu màu sắc, actor và mối quan hệ include/extend.
+- Lý do          : Giúp người đọc dễ dàng phân biệt các ký hiệu màu sắc, actor và các mối quan hệ include/extend.
 - Ảnh hưởng      : Thêm khung Legend trực quan vào cả 4 file sơ đồ trong docs/ (usecase.drawio, architecture.drawio, wireframe.drawio, erd.drawio).
