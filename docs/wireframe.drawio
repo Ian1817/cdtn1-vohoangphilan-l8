@@ -1,4 +1,4 @@
-﻿<mxfile host="Electron" modified="2026-10-10T03:30:00.000Z" agent="Mozilla/5.0" version="21.6.8" type="device">
+﻿<mxfile host="Electron" modified="2026-10-17T12:00:00.000Z" agent="Mozilla/5.0" version="21.6.8" type="device">
   <diagram id="wireframe-uiux" name="Wireframe 3 Màn Hình CSAT">
     <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1650" pageHeight="950" background="#f1f5f9">
       <root>
@@ -197,13 +197,61 @@
         </mxCell>
 
         <!-- Security Note Banner -->
-        <mxCell id="m3_mask_note" value="🔒 Đã mã hóa che số điện thoại khách hàng (NFR2 Security)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0fdf4;strokeColor=#bbf7d0;fontColor=#166534;fontStyle=1;fontSize=11;align=center;" vertex="1" parent="1">
+        <mxCell id="m3_mask_note" value="🔒 Đã mã hóa che số điện thoại khách hàng (NFR5 Security)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0fdf4;strokeColor=#bbf7d0;fontColor=#166534;fontStyle=1;fontSize=11;align=center;" vertex="1" parent="1">
           <mxGeometry x="1080" y="455" width="420" height="38" as="geometry" />
         </mxCell>
 
         <!-- Pagination Bar -->
         <mxCell id="m3_pager" value="&lt; Trang trước   [ 1 ]   2   3   4   5   Trang sau &gt;   (20 dòng / trang)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=12;fontColor=#64748b;" vertex="1" parent="1">
           <mxGeometry x="1080" y="725" width="420" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- ==================== LEGEND / CHÚ THÍCH KÝ HIỆU WIREFRAME ==================== -->
+        <mxCell id="wf_legend_bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#495057;strokeWidth=1.5;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="815" width="1440" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="wf_legend_title" value="CHÚ THÍCH KÝ HIỆU &amp; MÀU SẮC GIAO DIỆN (UI/UX LEGEND)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=13;fontColor=#0f172a;" vertex="1" parent="1">
+          <mxGeometry x="90" y="820" width="1420" height="25" as="geometry" />
+        </mxCell>
+        
+        <!-- Legend Item 1 -->
+        <mxCell id="lg_item1" value="Nút bấm hành động chính (Primary Button)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2563eb;fontColor=#ffffff;fontStyle=1;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="110" y="855" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="lg_item1_desc" value="Tương tác chính (Gửi đánh giá)" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=10;fontColor=#64748b;" vertex="1" parent="1">
+          <mxGeometry x="110" y="890" width="220" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- Legend Item 2 -->
+        <mxCell id="lg_item2" value="Trạng thái hợp lệ / Đã đóng (Status Badge)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dcfce7;strokeColor=#86efac;fontColor=#15803d;fontStyle=1;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="360" y="855" width="230" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="lg_item2_desc" value="Đáp ứng điều kiện kiểm tra quy tắc QT-10" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=10;fontColor=#64748b;" vertex="1" parent="1">
+          <mxGeometry x="360" y="890" width="230" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- Legend Item 3 -->
+        <mxCell id="lg_item3" value="* Cảnh báo quy tắc QT-10 / Đánh giá xấu (&lt;=2 sao)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fef2f2;strokeColor=#fca5a5;fontColor=#dc2626;fontStyle=1;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="620" y="855" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="lg_item3_desc" value="Nổi bật phản hồi xấu hoặc báo lỗi gửi trùng" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=10;fontColor=#64748b;" vertex="1" parent="1">
+          <mxGeometry x="620" y="890" width="260" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- Legend Item 4 -->
+        <mxCell id="lg_item4" value="🔒 Nhãn mã hóa bảo mật SĐT (Security Banner)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0fdf4;strokeColor=#bbf7d0;fontColor=#166534;fontStyle=1;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="910" y="855" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="lg_item4_desc" value="Tuân thủ yêu cầu phi chức năng NFR5 Security" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=10;fontColor=#64748b;" vertex="1" parent="1">
+          <mxGeometry x="910" y="890" width="260" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- Legend Item 5 -->
+        <mxCell id="lg_item5" value="Thẻ KPI &amp; Bộ lọc tìm kiếm" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8fafc;strokeColor=#cbd5e1;fontColor=#0f172a;fontStyle=1;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="1200" y="855" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="lg_item5_desc" value="Lọc theo sao (1-5) &amp; Phân trang (NFR2)" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=10;fontColor=#64748b;" vertex="1" parent="1">
+          <mxGeometry x="1200" y="890" width="200" height="20" as="geometry" />
         </mxCell>
 
       </root>
