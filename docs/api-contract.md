@@ -1,95 +1,110 @@
-﻿# Hợp đồng API (API Contract) - Luồng L8: Khảo sát hài lòng CSAT/NPS
-*Track: SE (Software Engineering) - Nền tảng: Node.js / Express*
+﻿# API CONTRACT – TRACK SE (LUỒNG L8: KHẢO SÁT CSAT)
 
-## 1. Danh sách Endpoint
-| Method | Endpoint | Mục đích | User Story |
-| :--- | :--- | :--- | :--- |
-| **POST** | \/api/surveys\ | Tiếp nhận đánh giá CSAT từ khách hàng (áp dụng QT-10) | US1 |
-| **GET** | \/api/tickets/:id/survey-status\ | Tra cứu trạng thái đủ điều kiện khảo sát của phiếu | US2 |
-| **GET** | \/api/reports/csat-technicians\ | Báo cáo điểm CSAT trung bình theo kỹ thuật viên | US3 |
-| **GET** | \/api/surveys\ | Lọc danh sách phản hồi khảo sát kèm phân trang | US4 |
+## API 1 – Tra cứu phiếu bảo hành trước khảo sát
+**GET `/api/tickets/{ticket_code}/summary`**
 
-## 2. Quy ước chung
-- Định dạng dữ liệu: JSON (UTF-8). Header bắt buộc: \Content-Type: application/json\.
-- Quy ước đặt tên trường: \snake_case\ khớp với cấu trúc bảng cơ sở dữ liệu.
-- Múi giờ: ISO 8601 kèm múi giờ Việt Nam (+07:00), ví dụ: \2026-10-04T19:30:00+07:00\.
-- Phân trang: mặc định \page=1\, \size=20\. Cấu trúc trả lời có kèm \	otal_records\.
-- Cấu trúc phản hồi lỗi chuẩn:
-\\\json
+Mục đích: Cho phép khách hàng tra cứu thông tin tóm tắt phiếu bảo hành trước khi điền form khảo sát.
+
+### Response thành công – 200 OK
+```json
 {
-  "error": {
-    "code": "MA_LOI_CU_THE",
-    "message": "Thông báo thân thiện cho người dùng",
-    "fields": { "ten_truong": "Chi tiết lỗi dữ liệu" }
-  }
+  "ticket_id": 1052,
+  "ticket_code": "WT-2026-1052",
+  "device_name": "iPhone 13 Pro Max",
+  "technician_name": "Nguyen Van A",
+  "status": "DA_DONG",
+  "can_survey": true
 }
-\\\
+Lỗi không tìm thấy mã phiếu – 404 Not Found
+JSON
+{
+  "error": "TICKET_NOT_FOUND",
+  "message": "Ma phieu bao hanh khong ton tai tren he thong."
+}
+API 2 – Gửi đánh giá khảo sát CSAT
+POST /api/surveys
 
-## 3. Chi tiết Endpoint trọng tâm: POST /api/surveys (US1 - MUST)
+Mục đích: Tiếp nhận điểm đánh giá CSAT và nhận xét từ khách hàng.
 
-### 3.1. Request Body
-\\\json
+Request Body
+JSON
 {
   "ticket_id": 1052,
   "csat_score": 5,
-  "comment": "Kỹ thuật viên tư vấn nhiệt tình, sửa chữa máy rất nhanh."
+  "comment": "Ky thuat vien nhiet tinh, sua may nhanh va chay em."
 }
-\\\
-
-### 3.2. Response 201 Created (Thành công)
-\\\json
+Response thành công – 201 Created
+JSON
 {
   "survey_id": 8801,
   "ticket_id": 1052,
   "csat_score": 5,
-  "comment": "Kỹ thuật viên tư vấn nhiệt tình, sửa chữa máy rất nhanh.",
-  "created_at": "2026-10-04T19:35:10+07:00",
-  "status": "DA_GHI_NHAN"
+  "status": "SUCCESS",
+  "created_at": "2026-10-09T08:30:00Z"
 }
-\\\
+Lỗi vi phạm quy tắc QT-10 (Phiếu chưa đóng) – 422 Unprocessable Entity
+JSON
+{
+  "error": "QT10_VIOLATION",
+  "message": "Phieu bao hanh chua o trang thai DA_DONG. Khong the thuc hien khao sat."
+}
+Lỗi gửi trùng lặp khảo sát – 409 Conflict
+JSON
+{
+  "error": "SURVEY_ALREADY_EXISTS",
+  "message": "Phieu bao hanh nay da duoc hoan tat khao sat truoc do."
+}
+API 3 – Xem báo cáo điểm CSAT theo Kỹ thuật viên
+GET /api/reports/csat-technicians?month=10&year=2026
 
-### 3.3. Response Lỗi
-- **400 Bad Request** (Dữ liệu không hợp lệ):
-\\\json
-{
-  "error": {
-    "code": "VALIDATION_ERROR",
-    "message": "Dữ liệu khảo sát gửi lên không hợp lệ",
-    "fields": { "csat_score": "Điểm CSAT bắt buộc là số nguyên từ 1 đến 5" }
-  }
-}
-\\\
-- **404 Not Found** (Không tìm thấy phiếu bảo hành):
-\\\json
-{
-  "error": {
-    "code": "TICKET_NOT_FOUND",
-    "message": "Mã phiếu bảo hành không tồn tại trong hệ thống"
-  }
-}
-\\\
-- **409 Conflict** (Phiếu đã làm khảo sát trước đó):
-\\\json
-{
-  "error": {
-    "code": "SURVEY_ALREADY_EXISTS",
-    "message": "Phiếu bảo hành này đã được hoàn thành khảo sát trước đó"
-  }
-}
-\\\
-- **422 Unprocessable Entity** (Vi phạm quy tắc nghiệp vụ QT-10):
-\\\json
-{
-  "error": {
-    "code": "QT10_VIOLATION",
-    "message": "Phiếu bảo hành chưa đóng (trạng thái hiện tại khác 'DA_DONG'), không được phép làm khảo sát"
-  }
-}
-\\\
+Mục đích: Cung cấp dữ liệu thống kê điểm CSAT trung bình cho Quản lý trung tâm.
 
-## 4. Bảng Validation cho POST /api/surveys
-| Trường dữ liệu | Bắt buộc | Kiểu / Ràng buộc kỹ thuật | Thông báo lỗi khi vi phạm |
-| :--- | :---: | :--- | :--- |
-| \	icket_id\ | Có | Số nguyên dương, tồn tại trong bảng \warranty_tickets\ | Mã phiếu bảo hành không hợp lệ hoặc không tồn tại |
-| \csat_score\ | Có | Số nguyên, giá trị 1 đến 5 | Điểm CSAT bắt buộc là số nguyên từ 1 đến 5 |
-| \comment\ | Không | Kiểu chuỗi, độ dài tối đa 1000 ký tự | Nhận xét không được vượt quá 1000 ký tự |
+Response thành công – 200 OK
+JSON
+{
+  "report_period": "10/2026",
+  "total_closed_tickets": 1250,
+  "total_surveys": 890,
+  "response_rate": "71.2%",
+  "data": [
+    {
+      "technician_id": 1,
+      "full_name": "Nguyen Van A",
+      "closed_tickets": 120,
+      "survey_count": 95,
+      "avg_csat": 4.8,
+      "five_star_ratio": "88%"
+    },
+    {
+      "technician_id": 2,
+      "full_name": "Tran Thi B",
+      "closed_tickets": 110,
+      "survey_count": 80,
+      "avg_csat": 4.6,
+      "five_star_ratio": "82%"
+    }
+  ]
+}
+API 4 – Danh sách & Lọc phản hồi khảo sát
+GET /api/surveys?score=1&page=1&limit=20
+
+Mục đích: Truy vấn danh sách khảo sát hỗ trợ lọc theo số sao và phân trang.
+
+Response thành công – 200 OK
+JSON
+{
+  "page": 1,
+  "limit": 20,
+  "total_records": 15,
+  "total_pages": 1,
+  "data": [
+    {
+      "survey_id": 8750,
+      "ticket_code": "WT-1033",
+      "customer_phone": "091xxxx789",
+      "csat_score": 1,
+      "comment": "Cho nhan may hoi lau, nhan vien chua nhiet tinh.",
+      "created_at": "2026-10-08T14:15:00Z"
+    }
+  ]
+}

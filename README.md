@@ -1,36 +1,14 @@
-﻿# Quản lý thu thập và thống kê phản hồi khảo sát hài lòng (CSAT) sau bảo hành
-Sinh viên:
-Võ Hoàng Phi Lân - 2374802010269 - Track SE
-Học phần:
-Chuyên đề Tốt nghiệp 1, HK1 2026-2027
-Luồng nghiệp vụ:
-L8 - Khảo sát hài lòng CSAT / NPS
-
-## 1. Mục tiêu
-Hệ thống cung cấp dịch vụ backend giúp Mekong Mobile tự động hóa việc thu thập phản hồi đánh giá của khách hàng sau khi hoàn tất sửa chữa bảo hành (giải quyết vấn đề V7). Dịch vụ tiếp nhận điểm đánh giá CSAT (thang điểm 1-5) kèm nhận xét khi phiếu ở trạng thái Đã đóng (tuân thủ quy tắc QT-10), ngăn chặn khảo sát trùng lặp và cung cấp API báo cáo điểm trung bình theo kỹ thuật viên cùng trung tâm bảo hành.
+﻿# Mekong Smart CRM - Luồng L8 (Khảo sát hài lòng CSAT/NPS)
 
 ## 2. Yêu cầu môi trường
-Node.js 20 LTS (hoặc mới hơn)
-Express framework
-Biến môi trường: xem .env.example
+- Node.js 18 LTS trở lên, npm 9+
+- PostgreSQL 14+ (hoặc SQLite 3 - xem ghi chú)
+- Biến môi trường: xem `.env.example` (`DATABASE_URL`, `PORT`)
 
-## 3. Hướng dẫn chạy
-(BT2 yêu cầu <= 4 bước)
-cp .env.example .env và điền giá trị
-npm install
-npm start
-Mở http://localhost:3000/health
-
-## 4. Cấu trúc thư mục
-- docs/: Chứa tài liệu đặc tả SRS, API Contract, sơ đồ Use Case và khai báo AI.
-- src/: Mã nguồn ứng dụng backend (Express server, routes, controllers, middleware).
-- tests/: Kịch bản kiểm thử tự động (Unit Test / Integration Test).
-- data/: Dữ liệu mẫu phục vụ kiểm thử và mô phỏng.
-
-## 5. Kiểm thử
-npm test -> hiển thị số test PASS
-
-## 6. Trạng thái hiện tại
-[x] Khởi tạo project, smoke test chạy được (buổi 2)
-[ ] Module tiếp nhận khảo sát và kiểm soát QT-10 (buổi 8-10)
-[ ] Module báo cáo chỉ số CSAT theo kỹ thuật viên và trung tâm (buổi 10-12)
+## 6. Trạng thái hiện tại (Buổi 8)
+- [x] Đã xử lý 100% phản hồi BT1 và ghi nhật ký tại `docs/thay-doi-thiet-ke.md`
+- [x] Dựng xong cấu trúc `src/` tách 3 lớp (`routes/`, `services/`, `repositories/`)
+- [x] Migration CSDL tạo các bảng `customers`, `technicians`, `warranty_tickets`, `survey_responses`
+- [x] Hiện thực API tra cứu phiếu (`GET /api/tickets/:ticket_code/summary`)
+- [x] Hiện thực API gửi khảo sát CSAT (`POST /api/surveys`) kiểm tra quy tắc QT-10 & chống trùng
+- [x] Chạy thử nghiệm thành công 2 endpoint bằng cURL / Postman và lưu ảnh minh chứng vào `docs/screenshots/`
