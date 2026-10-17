@@ -1,21 +1,28 @@
-﻿<mxfile host="app.diagrams.net" modified="2026-10-08T12:00:00.000Z" agent="Mozilla/5.0" version="24.0.0">
+﻿<mxfile host="app.diagrams.net" modified="2026-10-17T12:00:00.000Z" agent="Mozilla/5.0" version="24.0.0">
   <diagram id="erd-l8" name="ERD Luong L8">
-    <mxGraphModel dx="1100" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="1200" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        
+        <!-- TABLES -->
         <mxCell id="tb_cust" value="customers&#xa;--&#xa;+ customer_id (PK): INT&#xa;customer_name: VARCHAR(100)&#xa;phone_number: VARCHAR(20)&#xa;email: VARCHAR(100)&#xa;created_at: TIMESTAMP" style="shape=swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="60" y="80" width="220" height="130" as="geometry" />
         </mxCell>
+        
         <mxCell id="tb_tech" value="technicians&#xa;--&#xa;+ technician_id (PK): INT&#xa;full_name: VARCHAR(100)&#xa;phone_number: VARCHAR(20)&#xa;center_id: INT&#xa;is_active: BOOLEAN" style="shape=swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
           <mxGeometry x="60" y="320" width="220" height="130" as="geometry" />
         </mxCell>
+        
         <mxCell id="tb_ticket" value="warranty_tickets&#xa;--&#xa;+ ticket_id (PK): INT&#xa;ticket_code: VARCHAR(50) (UNIQUE)&#xa;customer_id (FK): INT&#xa;technician_id (FK): INT&#xa;device_name: VARCHAR(100)&#xa;status: VARCHAR(30)&#xa;closed_at: TIMESTAMP" style="shape=swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
           <mxGeometry x="440" y="180" width="260" height="160" as="geometry" />
         </mxCell>
+        
         <mxCell id="tb_survey" value="survey_responses&#xa;--&#xa;+ survey_id (PK): INT&#xa;ticket_id (FK, UNIQUE): INT&#xa;csat_score: INT (CHECK 1..5)&#xa;comment: TEXT&#xa;created_at: TIMESTAMP" style="shape=swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
           <mxGeometry x="840" y="195" width="240" height="130" as="geometry" />
         </mxCell>
+        
+        <!-- RELATIONSHIPS -->
         <mxCell id="rel1" value="1..N" style="endArrow=ERmany;startArrow=ERone;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.3;entryDx=0;entryDy=0;" edge="1" source="tb_cust" target="tb_ticket" parent="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
@@ -25,6 +32,61 @@
         <mxCell id="rel3" value="1..1 (QT-10)" style="endArrow=ERone;startArrow=ERone;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="tb_ticket" target="tb_survey" parent="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+
+        <!-- ==================== LEGEND / CHÚ THÍCH KÝ HIỆU ERD ==================== -->
+        <mxCell id="erd_legend_bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#495057;strokeWidth=1.5;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="490" width="1020" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="erd_legend_title" value="CHÚ THÍCH KÝ HIỆU MÔ HÌNH DỮ LIỆU (ERD LEGEND)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=12;fontColor=#0f172a;" vertex="1" parent="1">
+          <mxGeometry x="70" y="495" width="1000" height="25" as="geometry" />
+        </mxCell>
+
+        <!-- Legend Item 1: PK / FK -->
+        <mxCell id="lg_pk_fk" value="PK / FK" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="80" y="530" width="80" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="lg_pk_fk_desc" value="Khóa chính (Primary Key) / Khóa ngoại (Foreign Key)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontColor=#334155;" vertex="1" parent="1">
+          <mxGeometry x="170" y="530" width="280" height="28" as="geometry" />
+        </mxCell>
+
+        <!-- Legend Item 2: UNIQUE & CHECK -->
+        <mxCell id="lg_uq" value="UNIQUE / CHECK" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="80" y="570" width="100" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="lg_uq_desc" value="Ràng buộc chống trùng lặp (QT-10) &amp; Điểm CSAT (1-5)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontColor=#334155;" vertex="1" parent="1">
+          <mxGeometry x="190" y="570" width="270" height="28" as="geometry" />
+        </mxCell>
+
+        <!-- Legend Item 3: 1..N Relationship -->
+        <mxCell id="lg_rel_1n" value="" style="endArrow=ERmany;startArrow=ERone;html=1;strokeColor=#000000;" edge="1" parent="1">
+          <mxGeometry width="50" relative="1" as="geometry">
+            <mxPoint x="490" y="544" />
+            <mxPoint x="550" y="544" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lg_rel_1n_desc" value="Quan hệ 1 - Nhiều (1..N)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontColor=#334155;" vertex="1" parent="1">
+          <mxGeometry x="560" y="530" width="160" height="28" as="geometry" />
+        </mxCell>
+
+        <!-- Legend Item 4: 1..1 Relationship -->
+        <mxCell id="lg_rel_11" value="" style="endArrow=ERone;startArrow=ERone;html=1;strokeColor=#000000;" edge="1" parent="1">
+          <mxGeometry width="50" relative="1" as="geometry">
+            <mxPoint x="490" y="584" />
+            <mxPoint x="550" y="584" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lg_rel_11_desc" value="Quan hệ 1 - 1 (Quy tắc QT-10)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontColor=#334155;" vertex="1" parent="1">
+          <mxGeometry x="560" y="570" width="170" height="28" as="geometry" />
+        </mxCell>
+
+        <!-- Legend Item 5: Table Color -->
+        <mxCell id="lg_tbl" value="survey_responses" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="750" y="530" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="lg_tbl_desc" value="Bảng dữ liệu kết quả khảo sát CSAT" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontColor=#334155;" vertex="1" parent="1">
+          <mxGeometry x="880" y="530" width="190" height="28" as="geometry" />
+        </mxCell>
+
       </root>
     </mxGraphModel>
   </diagram>
