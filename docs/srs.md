@@ -5,30 +5,30 @@
 ### 1.1. Phạm vi
 Đề tài tập trung vào **Luồng L8 – Khảo sát hài lòng CSAT/NPS** trong hệ thống Smart CRM của Mekong Mobile.
 
-Trong phạm vi này, em tập trung phân tích quá trình hệ thống tự động cung cấp biểu mẫu và tiếp nhận đánh giá mức độ hài lòng của khách hàng sau khi phiếu bảo hành đã hoàn tất sửa chữa và chuyển sang trạng thái ĐÃ_ĐÓNG (`DA_DONG`). Quy trình gồm các bước chính: tra cứu thông tin tóm tắt phiếu bảo hành, kiểm tra và áp dụng quy tắc nghiệp vụ QT-10 (chỉ cho phép khảo sát phiếu đã đóng và ngăn chặn gửi trùng lặp), tiếp nhận điểm CSAT (thang điểm 1-5 sao) kèm nhận xét văn bản, tổng hợp báo cáo chỉ số CSAT theo kỹ thuật viên/trạm bảo hành, và truy vấn danh sách phản hồi hỗ trợ phân trang, lọc theo điểm số.
+Trong phạm vi này, phân hệ tập trung vào quá trình hệ thống tự động cung cấp biểu mẫu và tiếp nhận đánh giá mức độ hài lòng của khách hàng sau khi phiếu bảo hành đã hoàn tất sửa chữa và chuyển sang trạng thái ĐÃ_ĐÓNG (`DA_DONG`). Quy trình gồm các bước chính: tra cứu thông tin tóm tắt phiếu bảo hành, kiểm tra và áp dụng quy tắc nghiệp vụ QT-10 (chỉ cho phép khảo sát phiếu đã đóng và ngăn chặn gửi trùng lặp), tiếp nhận điểm CSAT (thang điểm 1-5 sao) kèm nhận xét văn bản, tổng hợp báo cáo chỉ số CSAT theo kỹ thuật viên/trạm bảo hành, và truy vấn danh sách phản hồi hỗ trợ phân trang, lọc theo điểm số.
 
 ### 1.2. Người dùng chính
-* **Khách hàng:** là người trực tiếp nhận máy sau bảo hành, tra cứu thông tin phiếu và điền form đánh giá CSAT (1-5 sao) kèm ý kiến đóng góp.
-* **Quản lý trung tâm:** xem danh sách phản hồi khảo sát, lọc theo số sao, theo dõi báo cáo thống kê chỉ số CSAT trung bình của từng kỹ thuật viên và các trạm bảo hành để đánh giá chất lượng dịch vụ.
-* **Kỹ thuật viên:** xem điểm CSAT trung bình và danh sách nhận xét chi tiết đối với các phiếu bảo hành do chính mình xử lý.
+- **Khách hàng:** là người trực tiếp nhận máy sau bảo hành, tra cứu thông tin phiếu và điền form đánh giá CSAT (1-5 sao) kèm ý kiến đóng góp.
+- **Quản lý trung tâm:** xem danh sách phản hồi khảo sát, lọc theo số sao, theo dõi báo cáo thống kê chỉ số CSAT trung bình của từng kỹ thuật viên và các trạm bảo hành để đánh giá chất lượng dịch vụ.
+- **Kỹ thuật viên:** xem điểm CSAT trung bình và danh sách nhận xét chi tiết đối với các phiếu bảo hành do chính mình xử lý.
 
 ### 1.3. Các thực thể liên quan
-Trong quá trình phân tích, em xác định các thực thể chính gồm:
-* `customer`: lưu trữ thông tin khách hàng (họ tên, số điện thoại, email).
-* `technician`: lưu trữ thông tin kỹ thuật viên sửa chữa và trạm làm việc.
-* `warranty_ticket`: hồ sơ phiếu bảo hành thiết bị (mã phiếu, trạng thái, ngày đóng).
-* `survey_response`: bản ghi kết quả khảo sát CSAT (điểm số 1-5, nhận xét, thời gian gửi).
+Trong quá trình phân tích, các thực thể CSDL chính gồm:
+- `customer`: lưu trữ thông tin khách hàng (họ tên, số điện thoại, email).
+- `technician`: lưu trữ thông tin kỹ thuật viên sửa chữa và trạm làm việc.
+- `warranty_ticket`: hồ sơ phiếu bảo hành thiết bị (mã phiếu, trạng thái, ngày đóng).
+- `survey_response`: bản ghi kết quả khảo sát CSAT (điểm số 1-5, nhận xét, thời gian gửi).
 
-### 1.4. Bảng thuật ngữ
-| Thuật ngữ | Giải thích |
+### 1.4. Bảng thuật ngữ & Quy tắc nghiệp vụ
+| Thuật ngữ / Quy tắc | Giải thích & Ràng buộc chi tiết |
 |---|---|
 | CRM | Customer Relationship Management – hệ thống quản lý quan hệ khách hàng |
 | CSAT | Customer Satisfaction Score – chỉ số đo lường mức độ hài lòng của khách hàng (thang điểm 1 đến 5 sao) |
 | Warranty Ticket | Phiếu bảo hành/sửa chữa thiết bị của khách hàng |
-| QT-10 | Quy tắc nghiệp vụ quy định chỉ cho phép gửi khảo sát khi phiếu bảo hành ở trạng thái ĐÃ_ĐÓNG (`DA_DONG`) |
-| Unique Constraint | Ràng buộc duy nhất trong CSDL đảm bảo mỗi phiếu bảo hành chỉ có tối đa 1 bản ghi khảo sát |
-| SLA | Thời hạn cam kết xử lý và phản hồi yêu cầu bảo hành |
-| GWT | Given – When – Then, khung cú pháp tiêu chuẩn dùng để mô tả tiêu chí chấp nhận (Acceptance Criteria) |
+| **QT-10** | Quy tắc nghiệp vụ quy định chỉ cho phép gửi khảo sát khi phiếu bảo hành ở trạng thái ĐÃ_ĐÓNG (`DA_DONG`) và mỗi `ticket_id` chỉ được khảo sát duy nhất 1 lần (sử dụng ràng buộc `UNIQUE`). |
+| **QT-11** | Tính bất biến của đánh giá: Phản hồi khảo sát sau khi đã lưu vào CSDL không được phép sửa (`UPDATE`) hay xóa (`DELETE`) bởi bất kỳ người dùng nào. |
+| **QT-12** | Thang điểm CSAT hợp lệ: Điểm đánh giá `csat_score` bắt buộc phải là số nguyên từ 1 đến 5 sao (`CHECK (csat_score BETWEEN 1 AND 5)`). |
+| Unique Constraint | Ràng buộc duy nhất trong CSDL đảm bảo không trùng lặp dữ liệu khảo sát. |
 | MoSCoW | Phương pháp phân loại mức độ ưu tiên yêu cầu: MUST, SHOULD, COULD, WON'T |
 
 ---
@@ -39,67 +39,67 @@ Trong quá trình phân tích, em xác định các thực thể chính gồm:
 **MoSCoW: MUST**
 
 **User Story:**
-> Là Khách hàng, em muốn tra cứu thông tin tóm tắt phiếu bảo hành bằng mã phiếu để xác nhận đúng thông tin thiết bị và kỹ thuật viên xử lý trước khi điền form đánh giá.
+> Là Khách hàng, tôi muốn tra cứu thông tin tóm tắt phiếu bảo hành bằng mã phiếu để xác nhận đúng thông tin thiết bị và kỹ thuật viên xử lý trước khi điền form đánh giá.
 
 **Tiêu chí chấp nhận:**
-* **GWT01:** Given em nhập mã phiếu bảo hành hợp lệ và tồn tại trên hệ thống (ví dụ: `WT-1052`), When em thực hiện tra cứu, Then hệ thống hiển thị thông tin tóm tắt gồm tên thiết bị, họ tên kỹ thuật viên xử lý và trạng thái hiện tại của phiếu.
-* **GWT02 – Ngoại lệ:** Given em nhập mã phiếu không tồn tại trong CSDL, When em thực hiện tra cứu, Then hệ thống hiển thị thông báo lỗi "Mã phiếu bảo hành không tồn tại" và không hiển thị form khảo sát.
+- **GWT01:** Given tôi nhập mã phiếu bảo hành hợp lệ và tồn tại trên hệ thống (ví dụ: `WT-1052`), When tôi thực hiện tra cứu, Then hệ thống hiển thị thông tin tóm tắt gồm tên thiết bị, họ tên kỹ thuật viên xử lý và trạng thái hiện tại của phiếu.
+- **GWT02 – Ngoại lệ:** Given tôi nhập mã phiếu không tồn tại trong CSDL, When tôi thực hiện tra cứu, Then hệ thống hiển thị thông báo lỗi "Mã phiếu bảo hành không tồn tại" và không hiển thị form khảo sát.
 
 ### US02 – Gửi đánh giá CSAT
 **MoSCoW: MUST**
 
 **User Story:**
-> Là Khách hàng, em muốn gửi điểm đánh giá CSAT (từ 1 đến 5 sao) và nhận xét cá nhân cho phiếu bảo hành đã hoàn thành để phản hồi chất lượng phục vụ của kỹ thuật viên.
+> Là Khách hàng, tôi muốn gửi điểm đánh giá CSAT (từ 1 đến 5 sao) và nhận xét cá nhân cho phiếu bảo hành đã hoàn thành để phản hồi chất lượng phục vụ của kỹ thuật viên.
 
 **Tiêu chí chấp nhận:**
-* **GWT03:** Given phiếu bảo hành đang ở trạng thái `DA_DONG` và chưa từng thực hiện khảo sát, When em chọn mức điểm từ 1 đến 5 sao và bấm gửi, Then hệ thống lưu bản ghi khảo sát vào CSDL và hiển thị thông báo cảm ơn khách hàng.
-* **GWT04 – Ngoại lệ (Vi phạm QT-10):** Given phiếu bảo hành chưa ở trạng thái `DA_DONG` (đang `TIEP_NHAN` hoặc `DANG_SUA`), When em cố gắng gửi khảo sát, Then hệ thống từ chối ghi nhận, hiển thị thông báo "Phiếu sửa chữa chưa hoàn tất, quý khách vui lòng khảo sát sau khi nhận máy".
-* **GWT05 – Ngoại lệ (Gửi trùng lặp):** Given phiếu bảo hành đã từng được gửi khảo sát trước đó, When em cố gắng gửi lại khảo sát cho phiếu này, Then hệ thống từ chối tiếp nhận và thông báo "Phiếu bảo hành này đã được hoàn tất khảo sát trước đó".
+- **GWT03:** Given phiếu bảo hành đang ở trạng thái `DA_DONG` và chưa từng thực hiện khảo sát, When tôi chọn mức điểm từ 1 đến 5 sao và bấm gửi, Then hệ thống lưu bản ghi khảo sát vào CSDL và hiển thị thông báo cảm ơn khách hàng.
+- **GWT04 – Ngoại lệ (Vi phạm QT-10):** Given phiếu bảo hành chưa ở trạng thái `DA_DONG` (đang `TIEP_NHAN` hoặc `DANG_SUA`), When tôi cố gắng gửi khảo sát, Then hệ thống từ chối ghi nhận, hiển thị thông báo "Phiếu sửa chữa chưa hoàn tất, quý khách vui lòng khảo sát sau khi nhận máy".
+- **GWT05 – Ngoại lệ (Gửi trùng lặp):** Given phiếu bảo hành đã từng được gửi khảo sát trước đó, When tôi cố gắng gửi lại khảo sát cho phiếu này, Then hệ thống từ chối tiếp nhận và thông báo "Phiếu bảo hành này đã được hoàn tất khảo sát trước đó".
 
-### US03 – Xem báo cáo CSAT theo Kỹ thuật viên
+### US03 – Xem báo cáo CSAT theo Kỹ thuật viên & Trung tâm
 **MoSCoW: MUST**
 
 **User Story:**
-> Là Quản lý trung tâm, em muốn xem báo cáo thống kê điểm CSAT trung bình theo từng kỹ thuật viên để đánh giá năng lực chuyên môn và thái độ phục vụ của nhân viên.
+> Là Quản lý trung tâm, tôi muốn xem báo cáo thống kê điểm CSAT trung bình theo từng kỹ thuật viên và toàn trung tâm để đánh giá năng lực chuyên môn và thái độ phục vụ của nhân viên.
 
 **Tiêu chí chấp nhận:**
-* **GWT06:** Given em truy cập vào trang báo cáo quản lý, When em chọn kỳ báo cáo và trạm bảo hành, Then hệ thống hiển thị bảng điểm gồm các cột: Mã KTV, Họ tên, Tổng số phiếu đã đóng, Số lượt khảo sát, Điểm CSAT trung bình (thang điểm 1.0 - 5.0) và Tỷ lệ đánh giá 5 sao.
-* **GWT07:** Given kỹ thuật viên chưa có lượt khảo sát nào trong kỳ, When hệ thống xuất báo cáo, Then cột điểm CSAT trung bình hiển thị dạng "N/A" hoặc "Chưa có đánh giá".
+- **GWT06:** Given tôi truy cập vào trang báo cáo quản lý, When tôi chọn kỳ báo cáo và trạm bảo hành, Then hệ thống hiển thị bảng điểm gồm các cột: Mã KTV, Họ tên, Tổng số phiếu đã đóng, Số lượt khảo sát, Điểm CSAT trung bình (thang điểm 1.0 - 5.0) và Tỷ lệ đánh giá 5 sao.
+- **GWT07:** Given kỹ thuật viên chưa có lượt khảo sát nào trong kỳ, When hệ thống xuất báo cáo, Then cột điểm CSAT trung bình hiển thị dạng "N/A" hoặc "Chưa có đánh giá".
 
 ### US04 – Lọc danh sách phản hồi theo thang điểm
 **MoSCoW: SHOULD**
 
 **User Story:**
-> Là Quản lý trung tâm, em muốn lọc danh sách các phản hồi khảo sát theo mức điểm sao (từ 1 đến 5 sao) để nhanh chóng phát hiện và xử lý các trường hợp khách hàng không hài lòng.
+> Là Quản lý trung tâm, tôi muốn lọc danh sách các phản hồi khảo sát theo mức điểm sao (từ 1 đến 5 sao) để nhanh chóng phát hiện và xử lý các trường hợp khách hàng không hài lòng.
 
 **Tiêu chí chấp nhận:**
-* **GWT08:** Given em đang ở trang danh sách phản hồi, When em chọn bộ lọc "1 sao" hoặc "2 sao", Then hệ thống chỉ hiển thị các bản ghi khảo sát có điểm `csat_score` tương ứng.
-* **GWT09:** Given em chọn xem chi tiết một phản hồi, When hệ thống hiển thị, Then số điện thoại của khách hàng được che mặt nạ bảo mật dạng `090xxxx123`.
+- **GWT08:** Given tôi đang ở trang danh sách phản hồi, When tôi chọn bộ lọc "1 sao" hoặc "2 sao", Then hệ thống chỉ hiển thị các bản ghi khảo sát có điểm `csat_score` tương ứng.
+- **GWT09:** Given tôi chọn xem chi tiết một phản hồi, When hệ thống hiển thị, Then số điện thoại của khách hàng được che mặt nạ bảo mật dạng `090xxxx123`.
 
 ### US05 – Kỹ thuật viên xem phản hồi cá nhân
 **MoSCoW: SHOULD**
 
 **User Story:**
-> Là Kỹ thuật viên, em muốn xem điểm trung bình và các nhận xét từ khách hàng đối với các phiếu do chính em xử lý để tự cải thiện chất lượng công việc.
+> Là Kỹ thuật viên, tôi muốn xem điểm trung bình và các nhận xét từ khách hàng đối với các phiếu do chính tôi xử lý để tự cải thiện chất lượng công việc.
 
 **Tiêu chí chấp nhận:**
-* **GWT10:** Given em là Kỹ thuật viên đã đăng nhập vào hệ thống, When em vào mục "Khảo sát cá nhân", Then hệ thống chỉ truy vấn và hiển thị các bản ghi khảo sát gắn liền với `technician_id` của em.
-* **GWT11 – Ngoại lệ:** Given em là Kỹ thuật viên, When em cố gắng truy cập đường dẫn báo cáo của kỹ thuật viên khác hoặc báo cáo toàn trạm, Then hệ thống từ chối truy cập và báo lỗi thiếu quyền hạn (403 Forbidden).
+- **GWT10:** Given tôi là Kỹ thuật viên đã đăng nhập vào hệ thống, When tôi vào mục "Khảo sát cá nhân", Then hệ thống chỉ truy vấn và hiển thị các bản ghi khảo sát gắn liền với `technician_id` của tôi.
+- **GWT11 – Ngoại lệ:** Given tôi là Kỹ thuật viên, When tôi cố gắng truy cập đường dẫn báo cáo của kỹ thuật viên khác hoặc báo cáo toàn trạm, Then hệ thống từ chối truy cập và báo lỗi thiếu quyền hạn (403 Forbidden).
 
 ### US06 – Chỉnh sửa đánh giá khảo sát
 **MoSCoW: WON'T**
 
 **User Story:**
-> Là Khách hàng, em muốn chỉnh sửa lại mức điểm sao hoặc nhận xét sau khi đã nộp form khảo sát để thay đổi ý kiến cá nhân.
+> Là Khách hàng, tôi muốn chỉnh sửa lại mức điểm sao hoặc nhận xét sau khi đã nộp form khảo sát để thay đổi ý kiến cá nhân.
 
 **Tiêu chí chấp nhận:**
-* **GWT12:** Given bản ghi khảo sát đã được lưu thành công vào CSDL, When khách hàng hoặc bất kỳ người dùng nào yêu cầu cập nhật, Then hệ thống không cung cấp tính năng này nhằm đảm bảo tính khách quan và tính toàn vẹn dữ liệu.
+- **GWT12:** Given bản ghi khảo sát đã được lưu thành công vào CSDL, When khách hàng hoặc bất kỳ người dùng nào yêu cầu cập nhật, Then hệ thống không cung cấp tính năng này theo quy tắc QT-11 nhằm đảm bảo tính khách quan và tính toàn vẹn dữ liệu.
 
 ---
 
 ## 3. Use Case
 
-### 3.1. Danh sách Use Case
+### 3.1. Danh sách Use Case (Chuẩn 6 Use Case)
 | Mã   | Use Case                                | Actor chính                             | MoSCoW |
 | ---- | --------------------------------------- | --------------------------------------- | ------ |
 | UC01 | Tra cứu thông tin phiếu bảo hành        | Khách hàng                              | MUST   |
@@ -109,13 +109,34 @@ Trong quá trình phân tích, em xác định các thực thể chính gồm:
 | UC05 | Lọc danh sách phản hồi khảo sát         | Quản lý trung tâm                       | SHOULD |
 | UC06 | Xem phản hồi CSAT cá nhân               | Kỹ thuật viên                           | SHOULD |
 
-### 3.2. Trách nhiệm
-| Đối tượng           | Trách nhiệm                                                                                                 |
-| ------------------- | ----------------------------------------------------------------------------------------------------------- |
-| Khách hàng          | Tra cứu mã phiếu, chọn điểm số CSAT (1-5 sao) và nhập ý kiến nhận xét.                                     |
-| Quản lý trung tâm   | Theo dõi báo cáo CSAT tổng hợp, lọc danh sách đánh giá xấu (1-2 sao) để xử lý khiếu nại.                    |
-| Kỹ thuật viên       | Đăng nhập xem tổng kết điểm CSAT trung bình và nhận xét đối với các phiếu do chính mình hoàn thành.         |
-| Hệ thống Smart CRM  | Tự động kiểm tra trạng thái phiếu `DA_DONG`, chặn gửi trùng lặp, lưu dữ liệu khảo sát và băm/che số điện thoại.|
+### 3.2. Đặc tả chi tiết Use Case: UC02 – Submit CSAT Rating (Gửi đánh giá CSAT)
+- **Use Case ID:** UC02
+- **Use Case Name:** Submit CSAT Rating (Gửi đánh giá CSAT)
+- **Primary Actor:** Khách hàng (End User)
+- **Pre-conditions (Điều kiện tiền đề):**
+  1. Khách hàng tra cứu phiếu bảo hành thành công và phiếu có trạng thái `status = 'DA_DONG'`.
+  2. Phiếu bảo hành chưa từng gửi đánh giá khảo sát (chưa tồn tại `ticket_id` trong bảng `survey_responses`).
+- **Post-conditions (Điều kiện sau thực hiện):**
+  1. Bản ghi khảo sát được lưu thành công vào bảng `survey_responses` (`survey_id`, `ticket_id`, `csat_score`, `comment`, `created_at`).
+  2. Hệ thống ghi nhận trạng thái phiếu đã hoàn thành khảo sát để chặn các lần gửi tiếp theo.
+
+#### Main Flow (Luồng chính):
+1. Khách hàng xem thông tin phiếu bảo hành và bấm chọn mức điểm đánh giá từ 1 đến 5 sao (`csat_score`).
+2. Khách hàng nhập nội dung nhận xét chi tiết (`comment` - không bắt buộc).
+3. Khách hàng nhấn nút "GỬI ĐÁNH GIÁ".
+4. Hệ thống gọi Use Case **UC03: Kiểm tra điều kiện QT-10 & Chống trùng**.
+5. Hệ thống ghi nhận thông tin đánh giá vào bảng `survey_responses`.
+6. Hệ thống hiển thị thông báo "Cảm ơn quý khách đã gửi đánh giá" và hoàn tất Use Case.
+
+#### Alternative Flows (Luồng rẽ nhánh):
+- **4a. Vi phạm quy tắc QT-10 (Phiếu chưa ở trạng thái `DA_DONG`):**
+  1. Hệ thống phát hiện `status != 'DA_DONG'`.
+  2. Hệ thống hiển thị thông báo lỗi: *"Phiếu sửa chữa chưa hoàn tất, quý khách vui lòng khảo sát sau khi nhận máy."*
+  3. Use Case kết thúc mà không lưu dữ liệu.
+- **4b. Vi phạm chống gửi trùng (Đã có bản ghi khảo sát trong CSDL):**
+  1. Hệ thống phát hiện `ticket_id` đã tồn tại trong bảng `survey_responses`.
+  2. Hệ thống hiển thị thông báo lỗi: *"Phiếu bảo hành này đã được hoàn tất khảo sát trước đó."*
+  3. Use Case kết thúc.
 
 ---
 
@@ -145,133 +166,13 @@ Trong quá trình phân tích, em xác định các thực thể chính gồm:
 
 ---
 
-## 6. Truy vết yêu cầu
+## 6. Bảng Truy vết Yêu cầu (Traceability Matrix)
 
-| User Story | Use Case | Functional Requirement | Bảng dữ liệu CSDL | Màn hình Wireframe |
-| ---------- | -------- | ---------------------- | ----------------- | ------------------ |
-| US01       | UC01     | FR01                   | `warranty_tickets`, `customers` | M1: Form Khảo sát CSAT |
-| US02       | UC02     | FR02                   | `survey_responses` | M1: Form Khảo sát CSAT |
-| US02       | UC03     | FR03                   | `warranty_tickets` | M1: Form Khảo sát CSAT |
-| US03       | UC04     | FR04                   | `technicians`, `survey_responses` | M2: Báo cáo CSAT theo KTV |
-| US04       | UC05     | FR05, FR06             | `survey_responses` | M3: Danh sách & Lọc phản hồi |
-| US05       | UC06     | FR04, FR05             | `survey_responses` | M2: Báo cáo CSAT theo KTV |
-
----
-
-# API CONTRACT – TRACK SE (LUỒNG L8)
-
-## API 1 – Tra cứu phiếu bảo hành trước khảo sát
-**GET `/api/tickets/{ticket_code}/summary`**
-
-Mục đích: Cho phép khách hàng tra cứu thông tin tóm tắt phiếu bảo hành trước khi điền form khảo sát.
-
-**Response thành công – 200 OK**
-```json
-{
-  "ticket_id": 1052,
-  "ticket_code": "WT-2026-1052",
-  "device_name": "iPhone 13 Pro Max",
-  "technician_name": "Nguyen Van A",
-  "status": "DA_DONG",
-  "can_survey": true
-}
-Không tìm thấy mã phiếu – 404 Not Found
-
-JSON
-{
-  "error": "TICKET_NOT_FOUND",
-  "message": "Ma phieu bao hanh khong ton tai tren he thong."
-}
-API 2 – Gửi đánh giá khảo sát CSAT
-POST /api/surveys
-
-Mục đích: Tiếp nhận điểm đánh giá CSAT và nhận xét từ khách hàng.
-
-Request Body
-
-JSON
-{
-  "ticket_id": 1052,
-  "csat_score": 5,
-  "comment": "Ky thuat vien nhiet tinh, sua may nhanh va chay em."
-}
-Response thành công – 201 Created
-
-JSON
-{
-  "survey_id": 8801,
-  "ticket_id": 1052,
-  "csat_score": 5,
-  "status": "SUCCESS",
-  "created_at": "2026-10-09T08:30:00Z"
-}
-Lỗi vi phạm quy tắc QT-10 (Phiếu chưa đóng) – 422 Unprocessable Entity
-
-JSON
-{
-  "error": "QT10_VIOLATION",
-  "message": "Phieu bao hanh chua o trang thai DA_DONG. Khong the thuc hien khao sat."
-}
-Lỗi gửi trùng lặp khảo sát – 409 Conflict
-
-JSON
-{
-  "error": "SURVEY_ALREADY_EXISTS",
-  "message": "Phieu bao hanh nay da duoc hoan tat khao sat truoc do."
-}
-API 3 – Xem báo cáo điểm CSAT theo Kỹ thuật viên
-GET /api/reports/csat-technicians?month=10&year=2026
-
-Mục đích: Cung cấp dữ liệu thống kê điểm CSAT trung bình cho Quản lý trung tâm.
-
-Response thành công – 200 OK
-
-JSON
-{
-  "report_period": "10/2026",
-  "total_closed_tickets": 1250,
-  "total_surveys": 890,
-  "response_rate": "71.2%",
-  "data": [
-    {
-      "technician_id": 1,
-      "full_name": "Nguyen Van A",
-      "closed_tickets": 120,
-      "survey_count": 95,
-      "avg_csat": 4.8,
-      "five_star_ratio": "88%"
-    },
-    {
-      "technician_id": 2,
-      "full_name": "Tran Thi B",
-      "closed_tickets": 110,
-      "survey_count": 80,
-      "avg_csat": 4.6,
-      "five_star_ratio": "82%"
-    }
-  ]
-}
-API 4 – Danh sách & Lọc phản hồi khảo sát
-GET /api/surveys?score=1&page=1&limit=20
-
-Mục đích: Truy vấn danh sách khảo sát hỗ trợ lọc theo số sao và phân trang.
-
-Response thành công – 200 OK
-
-JSON
-{
-  "page": 1,
-  "limit": 20,
-  "total_records": 15,
-  "total_pages": 1,
-  "data": [
-    {
-      "survey_id": 8750,
-      "ticket_code": "WT-1033",
-      "customer_phone": "091xxxx789",
-      "csat_score": 1,
-      "comment": "Cho nhan may hoi lau, nhan vien chua nhiet tinh.",
-      "created_at": "2026-10-08T14:15:00Z"
-    }
-  ]
-}
+| User Story | Use Case | Functional Requirement | Bảng dữ liệu CSDL | Màn hình Wireframe | MoSCoW |
+| ---------- | -------- | ---------------------- | ----------------- | ------------------ | :---: |
+| US01       | UC01     | FR01                   | `warranty_tickets`, `customers` | M1: Form Khảo sát CSAT | **MUST** |
+| US02       | UC02     | FR02                   | `survey_responses` | M1: Form Khảo sát CSAT | **MUST** |
+| US02       | UC03     | FR03                   | `warranty_tickets` | M1: Form Khảo sát CSAT | **MUST** |
+| US03       | UC04     | FR04                   | `technicians`, `survey_responses` | M2: Báo cáo CSAT theo KTV | **MUST** |
+| US04       | UC05     | FR05, FR06             | `survey_responses` | M3: Danh sách & Lọc phản hồi | **SHOULD** |
+| US05       | UC06     | FR04, FR05             | `survey_responses` | M2: Báo cáo CSAT theo KTV | **SHOULD** |
