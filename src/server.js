@@ -1,11 +1,11 @@
 const express = require('express');
 const { Pool } = require('pg');
-const cors = require('cors'); // Đã thêm thư viện CORS
+const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
 
-app.use(cors()); // Cho phép Frontend gọi API
+app.use(cors());
 app.use(express.json());
 
 // Kết nối Database
@@ -66,6 +66,49 @@ app.post('/api/surveys', async (req, res) => {
     );
 
     res.status(201).json(insertResult.rows[0]);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// --- API 3: Lấy báo cáo CSAT theo KTV ---
+app.get('/api/reports/csat', async (req, res) => {
+  try {
+    const query = `
+      SELECT 
+        t.technician_name,
+        COUNT(s.survey_id) as total_surveys,
+        ROUND(AVG(s.csat_score), 1) as avg_csat
+      FROM warranty_tickets t
+      JOIN survey_responses s ON t.ticket_id = s.ticket_id
+      GROUP BY t.technician_name
+    `;
+    const result = await pool.query(query);
+    res.json(result.rows);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// --- API 4: Lấy toàn bộ danh sách khảo sát (MỚI THÊM ĐỂ HIỂN THỊ LÊN M2, M3) ---
+app.get('/api/surveys', async (req, res) => {
+  try {
+    const query = `
+      SELECT 
+        s.survey_id, 
+        t.ticket_code, 
+        t.device_name,
+        t.technician_name, 
+        s.csat_score, 
+        s.nps_score,
+        s.comment, 
+        s.created_at
+      FROM survey_responses s
+      JOIN warranty_tickets t ON s.ticket_id = t.ticket_id
+      ORDER BY s.created_at DESC
+    `;
+    const result = await pool.query(query);
+    res.json(result.rows);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

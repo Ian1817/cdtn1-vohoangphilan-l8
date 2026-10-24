@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import SurveyPage from './pages/SurveyPage';
 import TicketListPage from './pages/TicketListPage';
-import TicketDetailPage from './pages/TicketDetailPage';
+import ReportPage from './pages/ReportPage';
 
 export default function App() {
   return (
@@ -14,8 +14,8 @@ export default function App() {
         <Link to="/list" style={{ color: 'white', textDecoration: 'none', marginTop: '2px' }}>
           Danh sách phiếu
         </Link>
-        <Link to="/detail" style={{ color: 'white', textDecoration: 'none', marginTop: '2px' }}>
-          Chi tiết phiếu
+        <Link to="/report" style={{ color: 'white', textDecoration: 'none', marginTop: '2px' }}>
+          Báo cáo KTV
         </Link>
       </nav>
 
@@ -23,7 +23,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<SurveyPage />} />
         <Route path="/list" element={<TicketListPage />} />
-        <Route path="/detail" element={<TicketDetailPage />} />
+        <Route path="/report" element={<ReportPage />} />
       </Routes>
     </BrowserRouter>
   );
