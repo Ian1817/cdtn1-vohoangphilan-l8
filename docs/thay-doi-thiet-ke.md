@@ -31,3 +31,5 @@
 - Quyết định     : SỬA
 - Lý do          : Giúp người đọc dễ dàng phân biệt các ký hiệu màu sắc, actor và các mối quan hệ include/extend.
 - Ảnh hưởng      : Thêm khung Legend trực quan vào cả 4 file sơ đồ trong docs/ (usecase.drawio, architecture.drawio, wireframe.drawio, erd.drawio).
+## Ghi chú điều chỉnh thiết kế trong quá trình tích hợp (Buổi 10 - BT2)
+Trong quá trình tích hợp để đảm bảo luồng chính chạy End-to-End kịp tiến độ, em đã gộp một phần logic xử lý vào file `src/server.js` thay vì tách hoàn toàn ra lớp Repository. Em đã tách riêng lớp Service (`src/services/ticket.service.js`) để viết Unit Test cho quy tắc QT-10. Việc tách lớp hoàn chỉnh (Repository) sẽ được hoàn thiện ở Giai đoạn 3 (BT3).
