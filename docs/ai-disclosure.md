@@ -17,7 +17,9 @@
 | **Buổi 04** | Thiết kế Sơ đồ Use Case, Đặc tả UC2 & Lập luận Kiến trúc NFR. | Gemini | Gợi ý mẫu 3 câu lập luận kiến trúc đánh đổi theo NFR (~30%). | Tự vẽ sơ đồ usecase.drawio, kiểm tra đủ 3 Actor và 6 Use Case không trùng lặp. |
 | **Buổi 05** | Thiết kế ERD (3NF), SQL DDL Skeleton & Wireframe 3 màn hình. | Không sử dụng AI | Tự thực hiện 100%. | Tự thiết kế bảng survey_responses, viết script SQL PostgreSQL và vẽ Wireframe. |
 | **Buổi 06** | Hoàn thiện API Contract, Traceability Matrix & Tổng hợp báo cáo BT1 PDF. | Gemini | Gợi ý khung JSON RESTful API cho POST /api/surveys (~30%). | Chỉnh sửa tên trường JSON cho khớp với CSDL, rà soát Bảng truy vết không có ô trống. |
-
+| **Buổi 08** | Dựng khung src/, viết migration CSDL & API tra cứu phiếu (GET). | Gemini / ChatGPT | Hỗ trợ viết cấu trúc Express, kết nối `pg`, xử lý lỗi (`try/catch`) (~40%). | Chạy thử `curl` trực tiếp, phát hiện lỗi hard-code dữ liệu và đã sửa sang truy vấn Database thật. |
+| **Buổi 09** | Xử lý lỗi Validation, API gửi khảo sát (POST) & Quy tắc QT-10. | Gemini / ChatGPT | Gợi ý logic kiểm tra trạng thái phiếu DA_DONG (~30%). | Tự viết lại thông báo lỗi tiếng Việt, test lại bằng Postman/curl cho cả trường hợp sai dữ liệu. |
+| **Buổi 10** | Làm giao diện Frontend (React), xử lý CORS & Viết Unit Test. | Gemini / ChatGPT | Hỗ trợ code React (pages, components, client.js), fix lỗi CORS và gợi ý 5 test case (~40%). | Tự tay chạy `npm test` (5 passed), tự nhập thử dữ liệu trên giao diện thật, chụp ảnh minh chứng. |
 ---
 
 ## 2. Cam kết Liêm chính Học thuật Cá nhân
