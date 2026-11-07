@@ -53,6 +53,44 @@ class TicketRepository {
     const result = await pool.query(query, [data.full_name, data.phone]);
     return result.rows[0];
   }
+
+  // --- BỔ SUNG CRUD CHO CUSTOMERS ---
+  async updateCustomer(id, data) {
+    const query = `UPDATE customers SET full_name = $1, phone = $2 WHERE customer_id = $3 RETURNING *`;
+    const result = await pool.query(query, [data.full_name, data.phone, id]);
+    return result.rows[0];
+  }
+
+  async deleteCustomer(id) {
+    const query = `DELETE FROM customers WHERE customer_id = $1 RETURNING *`;
+    const result = await pool.query(query, [id]);
+    return result.rows[0];
+  }
+
+  // --- BỔ SUNG API BÁO CÁO & DANH SÁCH ---
+  async getCsatReport() {
+    const query = `
+      SELECT t.technician_name, COUNT(s.survey_id) as total_surveys, 
+             ROUND(AVG(s.csat_score), 1) as avg_csat 
+      FROM warranty_tickets t 
+      JOIN survey_responses s ON t.ticket_id = s.ticket_id 
+      GROUP BY t.technician_name
+    `;
+    const result = await pool.query(query);
+    return result.rows;
+  }
+
+  async getAllSurveys() {
+    const query = `
+      SELECT s.survey_id, t.ticket_code, t.device_name, t.technician_name, 
+             s.csat_score, s.nps_score, s.comment, s.created_at 
+      FROM survey_responses s 
+      JOIN warranty_tickets t ON s.ticket_id = t.ticket_id 
+      ORDER BY s.created_at DESC
+    `;
+    const result = await pool.query(query);
+    return result.rows;
+  }
 }
 
 module.exports = new TicketRepository();

@@ -60,22 +60,32 @@ app.post('/api/customers', async (req, res) => {
   } catch (error) { res.status(500).json({ error: error.message }); }
 });
 
-// 5. API Báo cáo & Danh sách (Giữ nguyên)
+app.put('/api/customers/:id', async (req, res) => {
+  try {
+    const data = await ticketService.updateCustomer(req.params.id, req.body);
+    res.json(data);
+  } catch (error) { res.status(500).json({ error: error.message }); }
+});
+
+app.delete('/api/customers/:id', async (req, res) => {
+  try {
+    const data = await ticketService.deleteCustomer(req.params.id);
+    res.json(data);
+  } catch (error) { res.status(500).json({ error: error.message }); }
+});
+
+// 5. API Báo cáo & Danh sách (Đã chuyển vào Repository)
 app.get('/api/reports/csat', async (req, res) => {
   try {
-    const { Pool } = require('pg');
-    const pool = new Pool({ host: process.env.DB_HOST, port: process.env.DB_PORT, database: process.env.DB_NAME, user: process.env.DB_USER, password: process.env.DB_PASSWORD });
-    const result = await pool.query(`SELECT t.technician_name, COUNT(s.survey_id) as total_surveys, ROUND(AVG(s.csat_score), 1) as avg_csat FROM warranty_tickets t JOIN survey_responses s ON t.ticket_id = s.ticket_id GROUP BY t.technician_name`);
-    res.json(result.rows);
+    const data = await ticketService.getCsatReport();
+    res.json(data);
   } catch (error) { res.status(500).json({ error: error.message }); }
 });
 
 app.get('/api/surveys', async (req, res) => {
   try {
-    const { Pool } = require('pg');
-    const pool = new Pool({ host: process.env.DB_HOST, port: process.env.DB_PORT, database: process.env.DB_NAME, user: process.env.DB_USER, password: process.env.DB_PASSWORD });
-    const result = await pool.query(`SELECT s.survey_id, t.ticket_code, t.device_name, t.technician_name, s.csat_score, s.nps_score, s.comment, s.created_at FROM survey_responses s JOIN warranty_tickets t ON s.ticket_id = t.ticket_id ORDER BY s.created_at DESC`);
-    res.json(result.rows);
+    const data = await ticketService.getAllSurveys();
+    res.json(data);
   } catch (error) { res.status(500).json({ error: error.message }); }
 });
 
