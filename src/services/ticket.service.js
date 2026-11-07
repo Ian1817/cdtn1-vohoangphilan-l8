@@ -1,18 +1,49 @@
+const ticketRepository = require('../repositories/ticket.repository');
+
 class TicketService {
-  static kiemTraQuyTacQT10(ticket) {
+  async getSummary(ticketCode) {
+    const ticket = await ticketRepository.findByCode(ticketCode);
     if (!ticket) {
-      return { hopLe: false, lyDo: 'KHONG_TIM_THAY_PHIEU' };
+      const error = new Error('KHONG_TIM_THAY_PHIEU');
+      error.statusCode = 404;
+      throw error;
     }
-    if (ticket.status !== 'DA_DONG') {
-      return { hopLe: false, lyDo: 'PHIEU_CHUA_DONG_KHONG_THE_KHAO_SAT' };
-    }
-    return { hopLe: true, lyDo: null };
+    return {
+      ticket_id: ticket.ticket_id,
+      ticket_code: ticket.ticket_code,
+      device_name: ticket.device_name,
+      technician_name: ticket.technician_name,
+      status: ticket.status,
+      can_survey: ticket.status === 'DA_DONG'
+    };
   }
 
-  static kiemTraDauVao(csat_score, nps_score) {
-    if (csat_score === undefined || csat_score < 1 || csat_score > 5) return false;
-    if (nps_score === undefined || nps_score < 0 || nps_score > 10) return false;
-    return true;
+  async submitSurvey(payload) {
+    const { ticket_code, csat_score, nps_score, comment } = payload;
+    if (!ticket_code || csat_score === undefined) {
+      const error = new Error('DU_LIEU_KHONG_HOP_LE');
+      error.statusCode = 400;
+      throw error;
+    }
+    const ticket = await ticketRepository.findByCode(ticket_code);
+    if (!ticket) {
+      const error = new Error('KHONG_TIM_THAY_PHIEU');
+      error.statusCode = 404;
+      throw error;
+    }
+    if (ticket.status !== 'DA_DONG') {
+      const error = new Error('PHIEU_CHUA_DONG_KHONG_THE_KHAO_SAT');
+      error.statusCode = 400;
+      throw error;
+    }
+    return await ticketRepository.createSurvey(ticket.ticket_id, csat_score, nps_score, comment);
   }
+
+  async createTicket(data) { return await ticketRepository.createTicket(data); }
+  async updateTicketStatus(code, status) { return await ticketRepository.updateTicketStatus(code, status); }
+  async deleteTicket(code) { return await ticketRepository.deleteTicket(code); }
+  async getAllCustomers() { return await ticketRepository.getAllCustomers(); }
+  async createCustomer(data) { return await ticketRepository.createCustomer(data); }
 }
-module.exports = TicketService;
+
+module.exports = new TicketService();
