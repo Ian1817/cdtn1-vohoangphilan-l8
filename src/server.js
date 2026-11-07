@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
-const ticketService = require('./services/ticket.service');
+const ticketService = require('./services/ticket.service.impl');
 
 const app = express();
 app.use(cors());
