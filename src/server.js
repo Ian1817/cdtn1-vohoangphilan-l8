@@ -90,4 +90,10 @@ app.get('/api/surveys', async (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => { console.log(`Server running at http://localhost:${PORT}`); });
+
+// Chỉ khởi động server khi chạy trực tiếp (npm start), không khởi động khi Jest import
+if (require.main === module) {
+  app.listen(PORT, () => { console.log(`Server running at http://localhost:${PORT}`); });
+}
+
+module.exports = app;
