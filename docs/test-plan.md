@@ -29,4 +29,4 @@
 - **Môi trường:** Docker Compose (Node.js + PostgreSQL).
 - **Dữ liệu mẫu:** `seeds/init-pg.js` (tạo bảng và nạp 6 phiếu mẫu).
 - **Lệnh chạy test:** `npm test`.
-- **Dọn dẹp dữ liệu:** Chạy lại `node init-pg.js` trước mỗi lần test (nếu cần).
+- **Dọn dẹp dữ liệu:** Hệ thống tự động gọi hàm `resetDb()` trong mã nguồn để làm sạch Database trước mỗi test case (không cần chạy lệnh thủ công).
